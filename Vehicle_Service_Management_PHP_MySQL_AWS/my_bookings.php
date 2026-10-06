@@ -1,0 +1,4 @@
+<?php require_once 'db.php'; $rows=$conn->query("SELECT b.*,s.name service_name FROM bookings b JOIN services s ON b.service_id=s.id ORDER BY b.id DESC"); ?>
+<!DOCTYPE html><html><head><title>Bookings</title><link rel="stylesheet" href="css/style.css"></head><body>
+<nav><b>Vehicle Service</b><a href="index.php">Home</a><a href="book.php">Book Service</a><a href="my_bookings.php">My Bookings</a><a href="admin/login.php">Admin</a></nav>
+<div class="container"><h2>Recent Bookings</h2><table><tr><th>ID</th><th>Customer</th><th>Vehicle</th><th>Service</th><th>Date</th><th>Status</th></tr><?php while($r=$rows->fetch_assoc()): ?><tr><td><?=$r['id']?></td><td><?=htmlspecialchars($r['customer_name'])?></td><td><?=htmlspecialchars($r['vehicle'])?></td><td><?=htmlspecialchars($r['service_name'])?></td><td><?=$r['service_date']?></td><td><?=$r['status']?></td></tr><?php endwhile; ?></table></div></body></html>
